@@ -1,0 +1,49 @@
+.board-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0 40px;
+}
+
+.todo-pages {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.board-header {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 20px;
+}
+
+.board-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.board-button:hover {
+    background-color: #2980b9;
+}
+
+.all-pages {
+    display: flex;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.all-pages .page {
+    flex: 0 0 auto;
+    margin-right: 16px;
+}
+
+.all-pages .page:last-child {
+    margin-right: 0;
+}
