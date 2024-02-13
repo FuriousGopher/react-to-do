@@ -1,14 +1,13 @@
 import Modal from 'react-modal'
 import './LoginModal.css'
 import { FC, useState } from 'react'
-import { FaUser, FaEyeSlash, FaEye } from 'react-icons/fa'
+import { FaEye, FaEyeSlash, FaUser } from 'react-icons/fa'
 import { authenticateUser } from '../../api/api.ts'
 
 interface LoginModalProps {
   isOpen: boolean
   onClose: () => void
 }
-
 const LoginModal: FC<LoginModalProps> = ({ isOpen, onClose }) => {
   const [emailName, setEmailName] = useState('')
   const [password, setPassword] = useState('')
