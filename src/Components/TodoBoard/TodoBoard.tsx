@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import TodoPage from '../TodoPage/TodoPage.tsx'
 import './TodoBoard.css'
-import { getPages } from '../../api/api.ts'
+import { getPagesAll } from '../../api/api.ts'
 import { TodoListPage, UserData } from '../../Types/Types.ts'
 import TodoPagesAll from '../TodoPagesAll/TodoPagesAll.tsx'
 import LoginModal from '../LoginModal/LoginModal.tsx'
-import createTaskModal from '../CreateTaskModal/CreateTaskModal.tsx'
 import RegistrationModal from '../RegistrationModal/RegistrationModal.tsx'
+import CreateTaskModal from '../CreateTaskModal/CreateTaskModal.tsx'
 
 const TodoBoard = (props: UserData | null) => {
   const [todoPages, setTodoPages] = useState([
@@ -45,6 +45,7 @@ const TodoBoard = (props: UserData | null) => {
   ] as TodoListPage[])
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
+  const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false)
 
   const handleLoginClick = () => {
     setIsLoginModalOpen(true)
@@ -53,18 +54,22 @@ const TodoBoard = (props: UserData | null) => {
   const handleRegisterClick = () => {
     setIsRegisterModalOpen(true)
   }
+  const handleCreateTaskClick = () => {
+    setIsCreateTaskModalOpen(true)
+  }
 
   const handleLogoutClick = () => {}
 
   const closeModal = () => {
     setIsLoginModalOpen(false)
     setIsRegisterModalOpen(false)
+    setIsCreateTaskModalOpen(false)
   }
 
   useEffect(() => {
     const fetchTodoPages = async () => {
       try {
-        const getTodoPages = await getPages('get')
+        const getTodoPages = await getPagesAll()
         setTodoPages(getTodoPages)
       } catch (error) {
         console.error('Error fetching todo pages:', error)
@@ -76,15 +81,16 @@ const TodoBoard = (props: UserData | null) => {
 
   return (
     <div>
-      {props?.id ? (
+      <h1 className='board-title'>Todo Board</h1>
+      {!props?.id ? (
         <>
           <div className='board-header'>
             <button className='board-button' onClick={handleLogoutClick}>
               Logout
             </button>
           </div>
-          <div className='board-header'>
-            <button className='board-button' onClick={createTaskModal}>
+          <div className='create-task-button'>
+            <button className='board-button' onClick={handleCreateTaskClick}>
               Create Task
             </button>
           </div>
@@ -99,7 +105,6 @@ const TodoBoard = (props: UserData | null) => {
           </button>
         </div>
       )}
-      <h1 className='board-title'>Todo Board</h1>
       <div className='todo-pages'>
         {todoPages.map((todoPage: TodoListPage, index: number) => (
           <TodoPage key={index} {...todoPage} />
@@ -114,6 +119,7 @@ const TodoBoard = (props: UserData | null) => {
       </div>
       <LoginModal isOpen={isLoginModalOpen} onClose={closeModal} />
       <RegistrationModal isOpen={isRegisterModalOpen} onClose={closeModal} />
+      <CreateTaskModal isOpen={isCreateTaskModalOpen} onClose={closeModal} />
     </div>
   )
 }

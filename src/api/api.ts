@@ -18,9 +18,9 @@ export const axiosHelper = axios.create({
   withCredentials: true,
 })
 
-export const getPages = async (path: string): Promise<TodoListPage[]> => {
+export const getPagesAll = async (): Promise<TodoListPage[]> => {
   try {
-    const response: AxiosResponse = await axiosHelper.get(path)
+    const response: AxiosResponse = await axiosHelper.get()
     return response.data
   } catch (error) {
     handleError(error)
@@ -48,7 +48,7 @@ export const putData = async (path: string, data: any): Promise<any> => {
 }
 
 export const getUser = async (userId: number): Promise<any> => {
-  return getPages(`/users/${userId}`)
+  return getPagesAll(`/users/${userId}`)
 }
 
 export const authenticateUser = async (credentials: {

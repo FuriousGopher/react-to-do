@@ -14,7 +14,9 @@
 .board-header {
     display: flex;
     flex-direction: row-reverse;
-    margin: 20px;
+    position: fixed;
+    top: 5px;
+    right: 5px;
 }
 
 .board-button {
@@ -46,4 +48,10 @@
 
 .all-pages .page:last-child {
     margin-right: 0;
+}
+
+.create-task-button {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
 }
