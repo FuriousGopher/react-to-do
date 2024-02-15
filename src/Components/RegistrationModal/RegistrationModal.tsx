@@ -1,6 +1,6 @@
-import Modal from 'react-modal'
 import './RegistrationModal.css'
 import { FC, useState } from 'react'
+import * as Modal from 'react-modal'
 
 interface RegistrationModal {
   isOpen: boolean
