@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import TodoPage from '../TodoPage/TodoPage.tsx'
 import './TodoBoard.css'
 import { getPages } from '../../api/api.ts'
 import { TodoListPage, UserData } from '../../Types/Types.ts'
 import TodoPagesAll from '../TodoPagesAll/TodoPagesAll.tsx'
 import LoginModal from '../LoginModal/LoginModal.tsx'
-import createTaskModal from '../CreateTaskModal/CreateTaskModal.tsx'
+import CreateTaskModal from '../CreateTaskModal/CreateTaskModal.tsx'
 import RegistrationModal from '../RegistrationModal/RegistrationModal.tsx'
 
 const TodoBoard = (props: UserData | null) => {
@@ -84,7 +84,7 @@ const TodoBoard = (props: UserData | null) => {
             </button>
           </div>
           <div className='board-header'>
-            <button className='board-button' onClick={createTaskModal}>
+            <button className='board-button' onClick={CreateTaskModal}>
               Create Task
             </button>
           </div>
