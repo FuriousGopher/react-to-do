@@ -3,20 +3,16 @@ import './RegistrationModal.css'
 import { FC, useState } from 'react'
 import { FaEye, FaUser } from 'react-icons/fa'
 import { MdAlternateEmail, MdOutlinePassword } from 'react-icons/md'
+import { ModalProps } from '../../Types/Types.ts'
 
-interface RegistrationModal {
-  isOpen: boolean
-  onClose: () => void
-}
-
-const RegistrationModal: FC<RegistrationModal> = ({ isOpen, onClose }) => {
+const RegistrationModal: FC<ModalProps> = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [confirmPassword, setConfirmPassword] = useState('')
 
-  const handleRegistration = (e) => {
+  const handleRegistration = (e: any) => {
     e.preventDefault()
 
     if (password !== confirmPassword) {

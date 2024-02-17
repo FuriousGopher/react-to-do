@@ -8,7 +8,7 @@ import LoginModal from '../LoginModal/LoginModal.tsx'
 import CreateTaskModal from '../CreateTaskModal/CreateTaskModal.tsx'
 import RegistrationModal from '../RegistrationModal/RegistrationModal.tsx'
 
-const TodoBoard = (props: UserData | null) => {
+const TodoBoard = (userData: UserData | null) => {
   const [todoPages, setTodoPages] = useState([
     {
       id: 1,
@@ -45,9 +45,14 @@ const TodoBoard = (props: UserData | null) => {
   ] as TodoListPage[])
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
+  const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false)
 
   const handleLoginClick = () => {
     setIsLoginModalOpen(true)
+  }
+
+  const handleCreateTaskClick = () => {
+    setIsCreateTaskModalOpen(true)
   }
 
   const handleRegisterClick = () => {
@@ -59,6 +64,7 @@ const TodoBoard = (props: UserData | null) => {
   const closeModal = () => {
     setIsLoginModalOpen(false)
     setIsRegisterModalOpen(false)
+    setIsCreateTaskModalOpen(false)
   }
 
   useEffect(() => {
@@ -76,15 +82,16 @@ const TodoBoard = (props: UserData | null) => {
 
   return (
     <div>
-      {props?.id ? (
+      <h1 className='board-title'>Todo Board</h1>
+      {!userData?.id ? (
         <>
           <div className='board-header'>
             <button className='board-button' onClick={handleLogoutClick}>
               Logout
             </button>
           </div>
-          <div className='board-header'>
-            <button className='board-button' onClick={CreateTaskModal}>
+          <div className='create-task-button'>
+            <button className='board-button' onClick={handleCreateTaskClick}>
               Create Task
             </button>
           </div>
@@ -99,7 +106,6 @@ const TodoBoard = (props: UserData | null) => {
           </button>
         </div>
       )}
-      <h1 className='board-title'>Todo Board</h1>
       <div className='todo-pages'>
         {todoPages.map((todoPage: TodoListPage, index: number) => (
           <TodoPage key={index} {...todoPage} />
@@ -114,6 +120,11 @@ const TodoBoard = (props: UserData | null) => {
       </div>
       <LoginModal isOpen={isLoginModalOpen} onClose={closeModal} />
       <RegistrationModal isOpen={isRegisterModalOpen} onClose={closeModal} />
+      <CreateTaskModal
+        isOpen={isCreateTaskModalOpen}
+        onClose={closeModal}
+        account={userData!}
+      />
     </div>
   )
 }

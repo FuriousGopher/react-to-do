@@ -1,0 +1,58 @@
+.create-task-header,
+.create-task-body {
+    margin-bottom: 20px;
+}
+
+.create-task-first-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.create-task-first-line h4 {
+    margin-right: 10px;
+}
+
+.create-task-description textarea,
+.create-task-comment textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.create-task-dates p,
+.create-task-dates label,
+.create-task-dates input {
+    margin-bottom: 10px;
+}
+
+.create-task-attachment label {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.create-task-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-task-footer button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.create-task-footer button:first-child {
+    background-color: #6c757d;
+}
+
+.create-task-footer button:hover {
+    background-color: #0056b3;
+}

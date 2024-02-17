@@ -17,3 +17,9 @@ export interface UserData {
   id: number
   name: string
 }
+
+export interface ModalProps {
+  isOpen: boolean
+  onClose: () => void
+  account?: UserData
+}
