@@ -39,7 +39,8 @@ const CreateTaskModal: FC<ModalProps> = ({ isOpen, onClose, account }) => {
           </div>
           <div className='create-task-body'>
             <div className='create-task-first-line'>
-              <h4>Task owner: {account!.userData.name}</h4>{' '}
+              <h4>Task owner: {account}</h4> //TODO check what to do when no
+              user data
               {/*//TODO check why
               props like this ?*/}
               <label htmlFor='dropdown'>How urgent is it? </label>

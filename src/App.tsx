@@ -4,10 +4,8 @@ import './App.css'
 import { UserData } from './Types/Types.ts'
 
 function App() {
-  const [userData, setUserData] = useState<UserData | null>({
-    name: 'Rick',
-    id: 1,
-  })
+  const [userData, setUserData] = useState<UserData | null>()
+  const [loading, setLoading] = useState(true)
 
   /*  rngSystem = {
     color: #E45A84,
@@ -26,13 +24,25 @@ function App() {
   }*/
 
   useEffect(() => {
-    const storedData = localStorage.getItem('account')
+    const fetchData = async () => {
+      const storedData = localStorage.getItem('account')
 
-    if (storedData) {
-      const parsedData = JSON.parse(storedData)
-      setUserData(parsedData)
+      if (storedData) {
+        const parsedData = JSON.parse(storedData)
+        setUserData(parsedData)
+      }
+
+      setLoading(false)
     }
+
+    // Simulating a delay of 1000 milliseconds (1 second)
+    const delay = 500
+    setTimeout(fetchData, delay)
   }, [])
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <>

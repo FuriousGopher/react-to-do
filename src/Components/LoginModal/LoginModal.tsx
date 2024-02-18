@@ -2,7 +2,6 @@ import * as Modal from 'react-modal'
 import './LoginModal.css'
 import { FC, useState } from 'react'
 import { FaEye, FaEyeSlash, FaUser } from 'react-icons/fa'
-import { authenticateUser } from '../../api/api.ts'
 import { ModalProps } from '../../Types/Types.ts'
 
 const LoginModal: FC<ModalProps> = ({ isOpen, onClose }) => {
@@ -11,12 +10,20 @@ const LoginModal: FC<ModalProps> = ({ isOpen, onClose }) => {
   const [showPassword, setShowPassword] = useState(false)
 
   const handleLogin = async () => {
-    const result = await authenticateUser({ emailName, password })
+    //  const result = await authenticateUser({ emailName, password })
 
     console.log('Logging data:', emailName, password)
 
-    if (result) {
-      localStorage.setItem('account', JSON.stringify(result))
+    if (emailName === 'Rick' || password === '0000') {
+      localStorage.setItem(
+        'account',
+        JSON.stringify({
+          name: 'Rick',
+          id: 0,
+        }),
+      )
+    } else {
+      alert('Wrong name or password')
     }
   }
 
@@ -40,7 +47,7 @@ const LoginModal: FC<ModalProps> = ({ isOpen, onClose }) => {
           <div className='input-box'>
             <input
               placeholder='User name or email'
-              type='email'
+              type='text'
               value={emailName}
               required={true}
               onChange={(e) => setEmailName(e.target.value)}

@@ -47,6 +47,8 @@ const TodoBoard = (userData: UserData | null) => {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false)
 
+  console.log(userData)
+
   const handleLoginClick = () => {
     setIsLoginModalOpen(true)
   }
@@ -59,7 +61,9 @@ const TodoBoard = (userData: UserData | null) => {
     setIsRegisterModalOpen(true)
   }
 
-  const handleLogoutClick = () => {}
+  const handleLogoutClick = () => {
+    localStorage.removeItem('account')
+  }
 
   const closeModal = () => {
     setIsLoginModalOpen(false)
@@ -83,7 +87,7 @@ const TodoBoard = (userData: UserData | null) => {
   return (
     <div>
       <h1 className='board-title'>Todo Board</h1>
-      {!userData?.id ? (
+      {userData?.name ? ( //TODO why its not working
         <>
           <div className='board-header'>
             <button className='board-button' onClick={handleLogoutClick}>
@@ -120,11 +124,7 @@ const TodoBoard = (userData: UserData | null) => {
       </div>
       <LoginModal isOpen={isLoginModalOpen} onClose={closeModal} />
       <RegistrationModal isOpen={isRegisterModalOpen} onClose={closeModal} />
-      <CreateTaskModal
-        isOpen={isCreateTaskModalOpen}
-        onClose={closeModal}
-        account={userData!}
-      />
+      <CreateTaskModal isOpen={isCreateTaskModalOpen} onClose={closeModal} account={userData} />
     </div>
   )
 }
