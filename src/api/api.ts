@@ -1,5 +1,5 @@
-import axios, { AxiosResponse, AxiosError } from 'axios'
-import { TodoListPage, UserRegistrationDto } from '../Types/Types.ts'
+import axios, { AxiosError, AxiosResponse } from 'axios'
+import { TodoListPage, UserData, UserRegistrationDto } from '../Types/Types.ts'
 
 const baseURL = 'https://apiUrl'
 
@@ -28,6 +28,38 @@ export const getPages = async (path: string): Promise<TodoListPage[]> => {
   }
 }
 
+export const getUser = async (): Promise<UserData | null> => {
+  try {
+    const result = await promisifyWithDelay(localStorage.getItem.bind(localStorage), ['account'])
+    if (result) {
+      return JSON.parse(result)
+    }
+    return null
+  } catch (e) {
+    console.log(e)
+    return null
+  }
+}
+
+export const sightIn = async (emailName: string, password: string) => {
+  if (emailName === 'Rick' && password === '0000') {
+    const result = await promisifyWithDelay(localStorage.setItem.bind(localStorage), [
+      'account',
+      JSON.stringify({
+        name: 'Rick',
+        id: '0',
+      }),
+    ])
+    if (!result) return true
+  }
+  return false
+}
+
+export const sightOut = async () => {
+  const result = await promisifyWithDelay(localStorage.removeItem.bind(localStorage), ['account'])
+  return !result
+}
+
 export const deleteData = async (path: string): Promise<void> => {
   try {
     await axiosHelper.delete(path)
@@ -47,14 +79,7 @@ export const putData = async (path: string, data: any): Promise<any> => {
   }
 }
 
-export const getUser = async (userId: number): Promise<any> => {
-  return getPages(`/users/${userId}`)
-}
-
-export const authenticateUser = async (credentials: {
-  username: string
-  password: string
-}): Promise<any> => {
+export const authenticateUser = async (credentials: { username: string; password: string }): Promise<any> => {
   try {
     return axiosHelper.post('/auth', credentials)
   } catch (error) {
@@ -74,4 +99,22 @@ export const registration = async (credentials: {
     handleError(error)
     throw error
   }
+}
+
+const promisifyWithDelay = <F extends (...args: any[]) => any>(
+  callback: F,
+  params: Parameters<F>,
+  delay: number = 1000,
+  shouldReject: boolean = false,
+): Promise<ReturnType<F> | string> => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (shouldReject) {
+        reject('Error occurred')
+      }
+      const result = callback(...params)
+      console.log(result)
+      resolve(result)
+    }, delay)
+  })
 }

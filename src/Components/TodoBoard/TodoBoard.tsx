@@ -8,7 +8,15 @@ import LoginModal from '../LoginModal/LoginModal.tsx'
 import CreateTaskModal from '../CreateTaskModal/CreateTaskModal.tsx'
 import RegistrationModal from '../RegistrationModal/RegistrationModal.tsx'
 
-const TodoBoard = (userData: UserData | null) => {
+const TodoBoard = ({
+  userData,
+  handleLogin,
+  handleLogOut,
+}: {
+  userData: UserData | null
+  handleLogin: (name: string, password: string) => Promise<boolean>
+  handleLogOut: () => void
+}) => {
   const [todoPages, setTodoPages] = useState([
     {
       id: 1,
@@ -47,8 +55,6 @@ const TodoBoard = (userData: UserData | null) => {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false)
 
-  console.log(userData)
-
   const handleLoginClick = () => {
     setIsLoginModalOpen(true)
   }
@@ -62,7 +68,7 @@ const TodoBoard = (userData: UserData | null) => {
   }
 
   const handleLogoutClick = () => {
-    localStorage.removeItem('account')
+    handleLogOut()
   }
 
   const closeModal = () => {
@@ -87,7 +93,7 @@ const TodoBoard = (userData: UserData | null) => {
   return (
     <div>
       <h1 className='board-title'>Todo Board</h1>
-      {userData?.name ? ( //TODO why its not working
+      {userData ? (
         <>
           <div className='board-header'>
             <button className='board-button' onClick={handleLogoutClick}>
@@ -122,8 +128,8 @@ const TodoBoard = (userData: UserData | null) => {
           </div>
         ))}
       </div>
-      <LoginModal isOpen={isLoginModalOpen} onClose={closeModal} />
-      <RegistrationModal isOpen={isRegisterModalOpen} onClose={closeModal} />
+      <LoginModal isOpen={isLoginModalOpen} onClose={closeModal} handleSubmit={handleLogin} />
+      <RegistrationModal isOpen={isRegisterModalOpen} onClose={closeModal} handleSubmit={() => {}} />
       <CreateTaskModal isOpen={isCreateTaskModalOpen} onClose={closeModal} account={userData} />
     </div>
   )

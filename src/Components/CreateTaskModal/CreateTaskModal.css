@@ -1,6 +1,15 @@
-.create-task-header,
-.create-task-body {
-    margin-bottom: 20px;
+.create-task-header {
+    text-align: center;
+}
+
+.create-task-header input {
+    width: 95%;
+    font-size: 20px;
+    background: transparent;
+    border: 2px solid #3E1E68;
+    border-radius: 40px;
+    color: white;
+    padding: 10px;
 }
 
 .create-task-first-line {
@@ -13,10 +22,29 @@
     margin-right: 10px;
 }
 
+.create-task-first-line select {
+    -webkit-appearance: none;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 20px;
+    color: white;
+    margin-left: 4px;
+}
+
+.create-task-first-line select:hover, .create-task-first-line select:focus {
+    border-color: #007bff;
+}
+
+.create-task-first-line select option {
+    background: #333;
+    color: white;
+}
+
 .create-task-description textarea,
 .create-task-comment textarea {
     width: 100%;
     min-height: 80px;
+    background-color: lightskyblue;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -24,35 +52,28 @@
     box-sizing: border-box;
 }
 
-.create-task-dates p,
-.create-task-dates label,
 .create-task-dates input {
     margin-bottom: 10px;
+    -webkit-appearance: none;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 10px;
+    color: white;
+    margin-left: 4px;
+}
+
+
+.create-task-attachment {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
 }
 
 .create-task-attachment label {
-    margin-bottom: 10px;
-    display: block;
+    padding-right: 10px;
 }
 
 .create-task-footer {
     display: flex;
     justify-content: space-between;
-}
-
-.create-task-footer button {
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.create-task-footer button:first-child {
-    background-color: #6c757d;
-}
-
-.create-task-footer button:hover {
-    background-color: #0056b3;
 }

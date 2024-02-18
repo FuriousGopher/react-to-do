@@ -1,20 +1,22 @@
 import { FC, SetStateAction, useState } from 'react'
-import { ModalProps } from '../../Types/Types.ts'
+import { ModalProps, UserData } from '../../Types/Types.ts'
 import './CreateTaskModal.css'
 import * as Modal from 'react-modal'
 
-const CreateTaskModal: FC<ModalProps> = ({ isOpen, onClose, account }) => {
-  const [taskName, setTaskName] = useState('New Task')
+interface CreateTaskModalProps extends Omit<ModalProps, 'handleSubmit'> {
+  account: UserData | null
+}
+
+const CreateTaskModal: FC<CreateTaskModalProps> = ({ isOpen, onClose, account }) => {
+  const [taskName, setTaskName] = useState('')
   const [description, setDescription] = useState('')
   const [, setDeadLine] = useState(new Date().toISOString().split('T')[0])
-  const [comment, setComment] = useState()
+  const [comment, setComment] = useState('')
   const [urgent, setUrgent] = useState('Low')
 
-  const options = ['Low', 'Medium', 'High']
+  const options = ['Medium', 'High']
 
-  const handleDropdownChange = (event: {
-    target: { value: SetStateAction<string> }
-  }) => {
+  const handleDropdownChange = (event: { target: { value: SetStateAction<string> } }) => {
     setUrgent(event.target.value)
   }
 
@@ -30,7 +32,7 @@ const CreateTaskModal: FC<ModalProps> = ({ isOpen, onClose, account }) => {
         <form>
           <div className='create-task-header'>
             <input
-              placeholder={taskName}
+              placeholder={'New Task'}
               type='text'
               required={true}
               value={taskName}
@@ -39,16 +41,9 @@ const CreateTaskModal: FC<ModalProps> = ({ isOpen, onClose, account }) => {
           </div>
           <div className='create-task-body'>
             <div className='create-task-first-line'>
-              <h4>Task owner: {account}</h4> //TODO check what to do when no
-              user data
-              {/*//TODO check why
-              props like this ?*/}
-              <label htmlFor='dropdown'>How urgent is it? </label>
-              <select
-                id='dropdown'
-                value={urgent}
-                onChange={handleDropdownChange}
-              >
+              <h4>Task owner: {account?.name}</h4>
+              <label htmlFor='dropdown'>How urgent is it?</label>
+              <select id='dropdown' value={urgent} onChange={handleDropdownChange}>
                 <option value=''>Low</option>
                 {options.map((option) => (
                   <option key={option} value={option}>
@@ -68,22 +63,20 @@ const CreateTaskModal: FC<ModalProps> = ({ isOpen, onClose, account }) => {
             </div>
             <div className='create-task-dates'>
               <p>Issue date {new Date().toLocaleDateString()}</p>
-              <input
-                placeholder='Dead Line'
-                type='date'
-                required={true}
-                onChange={(e) => setDeadLine(e.target.value)}
-              />
+              <label htmlFor='comment'>Dead Line</label>
+              <input type='date' required={true} onChange={(e) => setDeadLine(e.target.value)} />
             </div>
             <div className='create-task-comment'>
               <label htmlFor='comment'>Comments</label>
               <textarea
                 id='comment'
                 value={comment}
+                placeholder='Liave your comment if nedded...'
                 onChange={(e) => setComment(e.target.value)}
               ></textarea>
             </div>
-            <div className='create-task-attacment'>
+            <div className='create-task-attachment'>
+              <label htmlFor='attachment'>Attachments</label>
               <input type='file' />
             </div>
             <div className='create-task-footer'>

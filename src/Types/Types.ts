@@ -21,5 +21,5 @@ export interface UserData {
 export interface ModalProps {
   isOpen: boolean
   onClose: () => void
-  account?: UserData
+  handleSubmit: () => void
 }

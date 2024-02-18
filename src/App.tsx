@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import TodoBoard from './Components/TodoBoard/TodoBoard.tsx'
 import './App.css'
 import { UserData } from './Types/Types.ts'
+import { getUser, sightIn, sightOut } from './api/api.ts'
 
 function App() {
-  const [userData, setUserData] = useState<UserData | null>()
-  const [loading, setLoading] = useState(true)
+  const [userData, setUserData] = useState<UserData | null>(null)
+  const [loading, setLoading] = useState(false)
 
   /*  rngSystem = {
     color: #E45A84,
@@ -23,25 +24,51 @@ function App() {
     )
   }*/
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const storedData = localStorage.getItem('account')
-
-      if (storedData) {
-        const parsedData = JSON.parse(storedData)
-        setUserData(parsedData)
-      }
-
+  const handleLogin = async (emailName: string, password: string) => {
+    setLoading(true)
+    const result = await sightIn(emailName, password)
+    if (!result) {
+      alert('Wrong name or password')
       setLoading(false)
+      return false
     }
+    const user = await getUser()
+    setUserData(user)
+    setLoading(false)
+    return true
+  }
 
-    // Simulating a delay of 1000 milliseconds (1 second)
-    const delay = 500
-    setTimeout(fetchData, delay)
+  const handleLogOut = async () => {
+    setLoading(true)
+    const result = await sightOut()
+    if (!result) {
+      alert('Error')
+      setLoading(false)
+      return false
+    }
+    setUserData(null)
+    setLoading(false)
+    return true
+  }
+
+  const fetchData = useCallback(async () => {
+    setLoading(true)
+    const result = await getUser()
+    setUserData(result)
+    setLoading(false)
   }, [])
 
+  useEffect(() => {
+    fetchData()
+  }, [fetchData])
+
   if (loading) {
-    return <div>Loading...</div>
+    // TODO make component loading
+    return (
+      <div className='loading'>
+        <span></span>
+      </div>
+    )
   }
 
   return (
@@ -75,7 +102,7 @@ function App() {
         <span></span>
       </div>
       <div className='main-wrap'>
-        <TodoBoard userData={userData} />
+        <TodoBoard userData={userData} handleLogin={handleLogin} handleLogOut={handleLogOut} />
       </div>
     </>
   )

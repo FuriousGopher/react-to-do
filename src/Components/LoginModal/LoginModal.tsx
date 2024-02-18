@@ -4,27 +4,19 @@ import { FC, useState } from 'react'
 import { FaEye, FaEyeSlash, FaUser } from 'react-icons/fa'
 import { ModalProps } from '../../Types/Types.ts'
 
-const LoginModal: FC<ModalProps> = ({ isOpen, onClose }) => {
+interface LoginModalProps extends Omit<ModalProps, 'handleSubmit'> {
+  handleSubmit: (emailName: string, password: string) => void
+}
+
+const LoginModal: FC<LoginModalProps> = ({ isOpen, onClose, handleSubmit }) => {
   const [emailName, setEmailName] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
 
-  const handleLogin = async () => {
-    //  const result = await authenticateUser({ emailName, password })
-
-    console.log('Logging data:', emailName, password)
-
-    if (emailName === 'Rick' || password === '0000') {
-      localStorage.setItem(
-        'account',
-        JSON.stringify({
-          name: 'Rick',
-          id: 0,
-        }),
-      )
-    } else {
-      alert('Wrong name or password')
-    }
+  const handleLogin = async (e) => {
+    e.preventDefault()
+    handleSubmit(emailName, password)
+    onClose()
   }
 
   const handleTogglePassword = () => {
