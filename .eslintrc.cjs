@@ -27,6 +27,7 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
   settings: {
     react: {

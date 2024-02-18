@@ -5,7 +5,7 @@ import { FaEye, FaEyeSlash, FaUser } from 'react-icons/fa'
 import { ModalProps } from '../../Types/Types.ts'
 
 interface LoginModalProps extends Omit<ModalProps, 'handleSubmit'> {
-  handleSubmit: (emailName: string, password: string) => void
+  handleSubmit: (emailName: string, password: string) => Promise<boolean>
 }
 
 const LoginModal: FC<LoginModalProps> = ({ isOpen, onClose, handleSubmit }) => {
@@ -15,7 +15,7 @@ const LoginModal: FC<LoginModalProps> = ({ isOpen, onClose, handleSubmit }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault()
-    handleSubmit(emailName, password)
+    await handleSubmit(emailName, password)
     onClose()
   }
 
