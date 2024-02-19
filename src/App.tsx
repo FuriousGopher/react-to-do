@@ -4,6 +4,7 @@ import './App.css'
 import { UserData } from './Types/Types.ts'
 import { getUser, sightIn, sightOut } from './api/api.ts'
 import Loader from './Components/Loader/Loader.tsx'
+import Background from './Components/Background/Background.tsx'
 
 function App() {
   const [userData, setUserData] = useState<UserData | null>(null)
@@ -73,34 +74,7 @@ function App() {
 
   return (
     <>
-      <div className='background'>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <Background />
       <div className='main-wrap'>
         <TodoBoard userData={userData} handleLogin={handleLogin} handleLogOut={handleLogOut} />
       </div>
