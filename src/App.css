@@ -31,7 +31,7 @@
     backface-visibility: hidden;
     position: absolute;
     animation: move;
-    animation-duration: 34;
+    animation-duration: 34s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
@@ -295,40 +295,6 @@
     animation-delay: -75s;
     transform-origin: 11vw 9vh;
     box-shadow: 22vmin 0 3.655277967268445vmin currentColor;
-}
-
-.loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff; /* White background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
-
-.loading span {
-    width: 50px; /* Adjust the size of the blue circle */
-    height: 50px;
-    background-color: #3498db; /* Blue color */
-    border-radius: 50%;
-    margin: 0 5px;
-    animation: pulse 1.5s infinite; /* Add a pulsating animation */
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(0.8);
-    }
-    50% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(0.8);
-    }
 }
 
 

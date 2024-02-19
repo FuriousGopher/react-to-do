@@ -1,0 +1,42 @@
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading span {
+    width: 50px;
+    height: 50px;
+    background-color: rebeccapurple;
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.medium-loader span {
+    width: 70px;
+    height: 70px;
+}
+
+.small-loader span {
+    width: 30px;
+    height: 30px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.8)
+    }
+    50% {
+        transform: scale(1)
+    }
+    100% {
+        transform: scale(0.8)
+    }
+}

@@ -3,6 +3,7 @@ import TodoBoard from './Components/TodoBoard/TodoBoard.tsx'
 import './App.css'
 import { UserData } from './Types/Types.ts'
 import { getUser, sightIn, sightOut } from './api/api.ts'
+import Loader from './Components/Loader/Loader.tsx'
 
 function App() {
   const [userData, setUserData] = useState<UserData | null>(null)
@@ -63,11 +64,10 @@ function App() {
   }, [fetchData])
 
   if (loading) {
-    // TODO make component loading
     return (
-      <div className='loading'>
-        <span></span>
-      </div>
+      <>
+        <Loader size='loading' />
+      </>
     )
   }
 
