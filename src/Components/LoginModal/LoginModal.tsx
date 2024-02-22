@@ -9,8 +9,8 @@ interface LoginModalProps extends Omit<ModalProps, 'handleSubmit'> {
 }
 
 const LoginModal: FC<LoginModalProps> = ({ isOpen, onClose, handleSubmit }) => {
-  const [emailName, setEmailName] = useState('')
-  const [password, setPassword] = useState('')
+  const [emailName, setEmailName] = useState('Rick')
+  const [password, setPassword] = useState('0000')
   const [showPassword, setShowPassword] = useState(false)
 
   const handleLogin = async (e) => {

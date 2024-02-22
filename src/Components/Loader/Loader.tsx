@@ -4,9 +4,9 @@ const Loader = ({ size }: { size: string }) => {
   let loaderClass = 'loading'
 
   if (size === 'medium') {
-    loaderClass += ' medium-loader'
+    loaderClass += 'medium-loader'
   } else if (size === 'small') {
-    loaderClass += ' small-loader'
+    loaderClass += 'small-loader'
   }
 
   return (

@@ -6,16 +6,25 @@
     width: 95%;
     font-size: 20px;
     background: transparent;
-    border: 2px solid #3E1E68;
+    border: none;
     border-radius: 40px;
     color: white;
     padding: 10px;
 }
 
+.create-task-header input::placeholder {
+ text-align: center;
+}
+
 .create-task-first-line {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 15px;
+}
+
+.priority-drop {
+    display: flex;
 }
 
 .create-task-first-line h4 {
@@ -29,6 +38,8 @@
     border-radius: 20px;
     color: white;
     margin-left: 4px;
+    font-size: 16px;
+    text-align: center;
 }
 
 .create-task-first-line select:hover, .create-task-first-line select:focus {
@@ -44,12 +55,13 @@
 .create-task-comment textarea {
     width: 100%;
     min-height: 80px;
-    background-color: lightskyblue;
+    background-color: lavender;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    margin-top: 5px;
 }
 
 .create-task-dates input {
@@ -76,4 +88,11 @@
 .create-task-footer {
     display: flex;
     justify-content: space-between;
+}
+
+.button-save-later {
+    background: lightskyblue;
+}
+.button-create-task {
+    background: mediumpurple;
 }

@@ -1,10 +1,13 @@
-export interface TodoListPage {
+export interface TaskModel {
   id: number
-  title: string
+  taskName: string
   author: string
-  content: string
-  data: Date
-  urgent: string
+  description: string
+  issueData: Date
+  deadline: Date
+  comment: string
+  priority: string
+  attachment: string //TODO what for data ?
 }
 
 export interface UserRegistrationDto {

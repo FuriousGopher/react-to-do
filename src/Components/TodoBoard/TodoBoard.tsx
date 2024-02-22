@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import TodoPage from '../TodoPage/TodoPage.tsx'
+import TaskPage from '../TodoPage/TaskPage.tsx'
 import './TodoBoard.css'
 import { getPages } from '../../api/api.ts'
-import { TodoListPage, UserData } from '../../Types/Types.ts'
+import { TaskModel, UserData } from '../../Types/Types.ts'
 import TodoPagesAll from '../TodoPagesAll/TodoPagesAll.tsx'
 import LoginModal from '../LoginModal/LoginModal.tsx'
 import CreateTaskModal from '../CreateTaskModal/CreateTaskModal.tsx'
@@ -20,37 +20,16 @@ const TodoBoard = ({
   const [todoPages, setTodoPages] = useState([
     {
       id: 1,
-      title: 'title',
-      content: 'content',
-      data: new Date(),
-      author: 'author',
-      urgent: 'very',
+      taskName: 'Name1',
+      author: 'Rick',
+      description: 'loremloremloremloremloremloremloremlorem',
+      issueData: new Date(),
+      deadline: new Date(),
+      comment: 'comentcomentcomentcomentcoment',
+      priority: 'Low',
+      attachment: 'Noattacment'
     },
-    {
-      id: 2,
-      title: 'title2',
-      content: 'content',
-      data: new Date(),
-      author: 'author',
-      urgent: 'very',
-    },
-    {
-      id: 3,
-      title: 'title3',
-      content: 'content',
-      data: new Date(),
-      author: 'author',
-      urgent: 'very',
-    },
-    {
-      id: 4,
-      title: 'title4',
-      content: 'content',
-      data: new Date(),
-      author: 'author',
-      urgent: 'very',
-    },
-  ] as TodoListPage[])
+  ] as TaskModel[])
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false)
@@ -117,17 +96,17 @@ const TodoBoard = ({
         </div>
       )}
       <div className='todo-pages'>
-        {todoPages.map((todoPage: TodoListPage, index: number) => (
-          <TodoPage key={index} {...todoPage} />
+        {todoPages.map((todoPage: TaskModel, index: number) => (
+          <TaskPage key={index} {...todoPage} />
         ))}
       </div>
-      <div className='all-pages'>
-        {todoPages.map((todoPage: TodoListPage, index: number) => (
+      {/*<div className='all-pages'>
+        {todoPages.map((todoPage: TaskModel, index: number) => (
           <div key={index} className='page'>
             <TodoPagesAll {...todoPage} />
           </div>
         ))}
-      </div>
+      </div>*/}
       <LoginModal isOpen={isLoginModalOpen} onClose={closeModal} handleSubmit={handleLogin} />
       <RegistrationModal isOpen={isRegisterModalOpen} onClose={closeModal} handleSubmit={() => {}} />
       <CreateTaskModal isOpen={isCreateTaskModalOpen} onClose={closeModal} account={userData} />

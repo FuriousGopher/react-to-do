@@ -1,8 +1,8 @@
 import React from 'react'
-import { TodoListPage } from '../../Types/Types'
+import { TaskModel } from '../../Types/Types'
 import './TodoPagesAll.css'
 
-const TodoPagesAll: React.FC<TodoListPage> = (props: TodoListPage) => {
+const TodoPagesAll: React.FC<TaskModel> = (props: TaskModel) => {
   return (
     <div className='all-page'>
       <h1>{props.title}</h1>

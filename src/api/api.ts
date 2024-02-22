@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios'
-import { TodoListPage, UserData, UserRegistrationDto } from '../Types/Types.ts'
+import { TaskModel, UserData, UserRegistrationDto } from '../Types/Types.ts'
 
 const baseURL = 'https://apiUrl'
 
@@ -18,7 +18,7 @@ export const axiosHelper = axios.create({
   withCredentials: true,
 })
 
-export const getPages = async (path: string): Promise<TodoListPage[]> => {
+export const getPages = async (path: string): Promise<TaskModel[]> => {
   try {
     const response: AxiosResponse = await axiosHelper.get(path)
     return response.data
