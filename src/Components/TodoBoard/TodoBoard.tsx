@@ -3,7 +3,6 @@ import TaskPage from '../TodoPage/TaskPage.tsx'
 import './TodoBoard.css'
 import { getPages } from '../../api/api.ts'
 import { TaskModel, UserData } from '../../Types/Types.ts'
-import TodoPagesAll from '../TodoPagesAll/TodoPagesAll.tsx'
 import LoginModal from '../LoginModal/LoginModal.tsx'
 import CreateTaskModal from '../CreateTaskModal/CreateTaskModal.tsx'
 import RegistrationModal from '../RegistrationModal/RegistrationModal.tsx'
@@ -20,14 +19,48 @@ const TodoBoard = ({
   const [todoPages, setTodoPages] = useState([
     {
       id: 1,
-      taskName: 'Name1',
+      taskName: 'Name 1',
       author: 'Rick',
       description: 'loremloremloremloremloremloremloremlorem',
       issueData: new Date(),
       deadline: new Date(),
       comment: 'comentcomentcomentcomentcoment',
       priority: 'Low',
-      attachment: 'Noattacment'
+      attachment: 'Noattacment',
+    },
+    {
+      id: 2,
+      taskName: 'Name 2',
+      author: 'Rick',
+      description:
+        'loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem',
+      issueData: new Date(),
+      deadline: new Date(),
+      comment: 'comentcomentcomentcomentcoment',
+      priority: 'Medium',
+      attachment: 'Noattacment',
+    },
+    {
+      id: 3,
+      taskName: 'Name 3',
+      author: 'Rick',
+      description: 'loremloremloremloremloremloremloremlorem',
+      issueData: new Date(),
+      deadline: new Date(),
+      comment: 'comentcomentcomentcomentcoment',
+      priority: 'High',
+      attachment: 'Noattacment',
+    },
+    {
+      id: 4,
+      taskName: 'Name 4',
+      author: 'Rick',
+      description: 'loremloremloremloremloremloremloremlorem',
+      issueData: new Date(),
+      deadline: new Date(),
+      comment: 'comentcomentcomentcomentcoment',
+      priority: 'Low',
+      attachment: 'Noattacment',
     },
   ] as TaskModel[])
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)

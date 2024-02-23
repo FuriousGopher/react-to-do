@@ -1,10 +1,14 @@
-.task-main-board{
+.task-main-board {
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
+    max-width: 22vw;
     margin-bottom: 16px;
     background-color: rgba(255, 255, 255, 0.1);
     color: white;
+    word-wrap: break-word;
+    font-size: 17px;
+    height: 100%;
 }
 
 .task-title {
@@ -14,44 +18,84 @@
     border-bottom: 1px solid white;
 }
 
+.delete-task {
+    cursor: pointer;
+    display: flex;
+}
 
-.content{
+.content {
     display: flex;
     flex-direction: column;
 }
 
-.priority{
+.priority {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 8px;
+}
+
+.priority-text {
+    padding: 4px;
+    margin-right: 8px;
+    border-radius: 10px;
+}
+
+.low {
+    background-color: #4CAF50;
+}
+
+.medium {
+    background-color: #FFC107;
+    color: #333;
+}
+
+.high {
+    background-color: orangered;
+}
+
+
+.description {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dates {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.dead-line {
 
 }
 
-.description{
-
+.attachment {
+    padding: 10px;
 }
 
-.dates{
-
+.task-board-bottom {
+    position: fixed;
+    margin-top: auto;
 }
 
-.issue-data{
-
+.del-postpone, .task-done-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.dead-line{
-
+.del-postpone {
+    background-color: #FF6347;
+    color: white;
 }
 
-.attachment{
-
+.task-done-button {
+    background-color: #32CD32;
+    color: white;
 }
 
-.task-board-bottom{
 
-}
-
-.del-postpone{
-
-}
-
-.task-done-button{
-
-}

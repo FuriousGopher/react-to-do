@@ -14,7 +14,7 @@ const CreateTaskModal: FC<CreateTaskModalProps> = ({ isOpen, onClose, account })
   const [comment, setComment] = useState('')
   const [priority, setPriority] = useState('Low')
 
-  const options = ['Medium', 'High']
+  const options = ['Low', 'Medium', 'High']
 
   const handleDropdownChange = (event: { target: { value: SetStateAction<string> } }) => {
     setPriority(event.target.value)
@@ -42,9 +42,9 @@ const CreateTaskModal: FC<CreateTaskModalProps> = ({ isOpen, onClose, account })
           <div className='create-task-body'>
             <div className='create-task-first-line'>
               <h4>Task owner: {account?.name}</h4>
-              <div className='priority-drop'><label htmlFor="dropdown">Priority</label>
-                <select id="dropdown" value={priority} onChange={handleDropdownChange}>
-                  <option value="Low">Low</option>
+              <div className='priority-drop'>
+                <label htmlFor='dropdown'>Priority</label>
+                <select id='dropdown' value={priority} onChange={handleDropdownChange}>
                   {options.map((option) => (
                     <option key={option} value={option}>
                       {option}
@@ -53,11 +53,11 @@ const CreateTaskModal: FC<CreateTaskModalProps> = ({ isOpen, onClose, account })
                 </select>
               </div>
             </div>
-            <div className="create-task-description">
-              <label htmlFor="description">Description</label>
+            <div className='create-task-description'>
+              <label htmlFor='description'>Description</label>
               <textarea
-                id="description"
-                placeholder="Enter task description..."
+                id='description'
+                placeholder='Enter task description...'
                 value={description}
                 required={true}
                 onChange={(e) => setDescription(e.target.value)}

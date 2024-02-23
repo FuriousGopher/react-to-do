@@ -11,33 +11,34 @@ figcaption,
 blockquote,
 dl,
 dd {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  line-height: 1.6;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
 }
 
 
 ul,
 ol {
-  list-style: none;
+    list-style: none;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 *, *::before, *::after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 
@@ -45,21 +46,21 @@ h1,
 h2,
 h3,
 p {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 img,
 figure {
-  margin: 0.5rem 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+    margin: 0.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 body {
-  padding: 20px;
+    padding: 20px;
 }

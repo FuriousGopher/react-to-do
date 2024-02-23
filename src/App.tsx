@@ -32,8 +32,7 @@ function App() {
       return false
     }
     setUserData(null)
-    setLoading(false)
-    return true
+    return
   }
 
   const fetchData = useCallback(async () => {
